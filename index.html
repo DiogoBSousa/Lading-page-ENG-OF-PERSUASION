@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Engenharia da Persuasão — Black Visor</title>
+<meta name="description" content="Dominando a Arte da Influência Invisível. O manual definitivo de persuasão, negociação e psicologia comportamental aplicada.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,[...]
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #050505;
+    --panel: #0e0e0e;
+    --red: #c41e2a;
+    --red-light: #e53e3e;
+    --red-dark: #7f1d1d;
+    --red-glow: rgba(196, 30, 42, 0.15);
+    --white: #f0f0f0;
+    --gray: #9a9a9a;
+    --gray-dark: #6e6e6e;
+    --border: #1e1e1e;
+    --border-red: rgba(196, 30, 42, 0.25);
+  }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'EB Garamond', Georgia, serif;
+    line-height: 1.75;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--red); color: #fff; }
+  img { max-width: 100%; display: block; }
+  a { color: var(--red-light); text-decoration: none; transition: color 0.3s ease; }
+  a:hover { color: #ff6b6b; }
+
+  :focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 2px; }
+
+  h1, h2, h3, h4 { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; line-height: 1.15; }
+
+  .container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  .chess-texture { position: relative; }
+  .chess-texture::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.025;
+    background-image:
+      linear-gradient(45deg, var(--red) 25%, transparent 25%),
+      linear-gradient(-45deg, var(--red) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, var(--red) 75%),
+      linear-gradient(-45deg, transparent 75%, var(--red) 75%);
+    background-size: 60px 60px;
+    background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .chess-texture > * { position: relative; z-index: 1; }
+
+  section { padding: 100px 0; }
+
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--red-light);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+
+  .section-text {
+    font-size: clamp(1.05rem, 2vw, 1.2rem);
+    color: var(--gray);
+    max-width: 680px;
+    line-height: 1.85;
+  }
+
+  .section-text + .section-text { margin-top: 20px; }
+
+  .divider { width: 60px; height: 1px; background: var(--red); opacity: 0.4; margin: 32px 0; }
+
+  .cta-btn {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #fff;
+    background: linear-gradient(135deg, var(--red), var(--red-light));
+    border: none;
+    padding: 18px 48px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+  .cta-btn:hover { color: #fff; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(196, 30, 42, 0.35); }
+  .cta-btn:hover::after { opacity: 1; }
+  .cta-btn:active { transform: translateY(0); }
+
+  .cta-btn-outline {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--red-light);
+    background: transparent;
+    border: 1px solid var(--border-red);
+    padding: 14px 36px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    text-decoration: none;
+  }
+  .cta-btn-outline:hover { color: #ff6b6b; border-color: var(--red); background: rgba(196, 30, 42, 0.05); }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  .reveal-delay-5 { transition-delay: 0.5s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+    .cta-btn, .cta-btn-outline, a, .piece-card { transition: none; }
+    .cta-btn:hover { transform: none; }
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 60px 0 80px;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%; right: -10%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(196, 30, 42, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 200px;
+    background: linear-gradient(to top, var(--bg), transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+
+  .hero-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red-light);
+    margin-bottom: 24px;
+    opacity: 0.9;
+  }
+
+  .hero-title {
+    font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.08;
+    margin-bottom: 8px;
+  }
+  .hero-title .red { color: var(--red-light); }
+
+  .hero-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--gray);
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  .hero-cta-wrap { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+  .hero-price-note { font-size: 0.85rem; color: var(--gray); opacity: 0.8; }
+
+  .hero-cover-wrap { display: flex; justify-content: center; align-items: center; position: relative; z-index: 2; }
+
+  .hero-cover {
+    width: 100%;
+    max-width: 380px;
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 80px rgba(196, 30, 42, 0.1);
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
+  }
+  .hero-cover:hover {
+    transform: scale(1.02) translateY(-4px);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 120px rgba(196, 30, 42, 0.15);
+  }
+
+  /* ===== PAIN — labels em branco sobre fundo vermelho escuro ===== */
+  .pain-section { background: var(--red-dark); position: relative; overflow: hidden; }
+  .pain-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 20% 50%, rgba(127,29,29,0.6) 0%, transparent 60%), radial-gradient(ellipse at 80% 80%, rgba(80,15,15,0.8) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .pain-section .section-label { color: var(--white); opacity: 0.7; }
+  .pain-section .section-title { color: var(--white); }
+  .pain-section .section-text { color: rgba(240,240,240,0.8); }
+
+  .pain-list { list-style: none; margin-top: 40px; display: grid; gap: 20px; }
+  .pain-list li {
+    font-size: clamp(1rem, 1.8vw, 1.15rem);
+    color: rgba(240,240,240,0.75);
+    padding-left: 28px;
+    position: relative;
+    line-height: 1.7;
+  }
+  .pain-list li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    color: var(--white);
+    font-size: 0.7rem;
+    top: 6px;
+    opacity: 0.6;
+  }
+
+  .virada-section { text-align: center; position: relative; }
+  .virada-section .section-text { margin-left: auto; margin-right: auto; }
+  .virada-highlight {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    font-weight: 700;
+    font-style: italic;
+    color: var(--red-light);
+    margin: 40px auto;
+    max-width: 700px;
+    line-height: 1.5;
+  }
+
+  .pieces-section { background: var(--panel); }
+
+  .pieces-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+
+  .piece-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    padding: 36px 28px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .piece-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--red), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .piece-card:hover { border-color: var(--border-red); background: rgba(196, 30, 42, 0.03); transform: translateY(-4px); }
+  .piece-card:hover::before { opacity: 0.5; }
+
+  .piece-icon { font-size: 2rem; margin-bottom: 16px; display: block; color: var(--red-light); opacity: 0.85; line-height: 1; }
+
+  .piece-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red-light);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .piece-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+
+  .piece-desc { font-size: 0.95rem; color: var(--gray); line-height: 1.7; }
+
+  .piece-skills { list-style: none; margin-top: 16px; display: flex; flex-direction: column; gap: 6px; }
+  .piece-skills li { font-size: 0.85rem; color: var(--gray); padding-left: 16px; position: relative; }
+  .piece-skills li::before { content: '—'; position: absolute; left: 0; color: var(--red); opacity: 0.6; }
+
+  .authority-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-top: 48px; }
+
+  .authority-card { padding: 28px 24px; border: 1px solid var(--border); background: rgba(255,255,255,0.015); text-align: center; }
+  .authority-card .label { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red-light); margin-bottom: 10px; display: block; }
+  .authority-card .name { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+  .authority-card .desc { font-size: 0.85rem; color: var(--gray); line-height: 1.6; }
+
+  .author-section { background: var(--panel); }
+
+  .author-grid { display: grid; grid-template-columns: auto 1fr; gap: 48px; align-items: center; }
+
+  .author-avatar {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 1px solid var(--border-red);
+  }
+  .author-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .author-name { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--white); margin-bottom: 16px; }
+  .author-bio { font-size: 1.05rem; color: var(--gray); line-height: 1.85; max-width: 560px; }
+
+  .offer-section { text-align: center; }
+  .offer-section .section-text { margin-left: auto; margin-right: auto; }
+
+  .offer-box {
+    max-width: 560px;
+    margin: 48px auto 0;
+    border: 1px solid var(--border-red);
+    background: var(--panel);
+    padding: 48px 40px;
+    position: relative;
+  }
+  .offer-box::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 30%; right: 30%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--red), transparent);
+  }
+
+  .offer-price-label { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gray); margin-bottom: 8px; }
+
+  .offer-price { font-family: 'Playfair Display', serif; font-size: 3.2rem; font-weight: 900; color: var(--red-light); margin-bottom: 8px; line-height: 1.1; }
+  .offer-price .currency { font-size: 1.4rem; vertical-align: super; margin-right: 4px; }
+  .offer-price .cents { font-size: 1.4rem; vertical-align: super; }
+  .offer-price-sub { font-size: 0.9rem; color: var(--gray); margin-bottom: 32px; }
+
+  .offer-includes { text-align: left; margin-bottom: 32px; }
+  .offer-includes .inc-label { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red-light); margin-bottom: 16px; display: block; }
+  .offer-includes ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .offer-includes li { font-size: 0.95rem; color: var(--white); padding-left: 24px; position: relative; }
+  .offer-includes li::before { content: '✦'; position: absolute; left: 0; color: var(--red-light); font-size: 0.6rem; top: 5px; }
+  .offer-includes li.bonus { color: var(--gray); }
+
+  .guarantee-box { margin-top: 32px; padding: 24px; border: 1px solid var(--border); background: rgba(255,255,255,0.015); text-align: center; }
+  .guarantee-box .g-label { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red-light); margin-bottom: 8px; }
+  .guarantee-box .g-text { font-size: 0.9rem; color: var(--gray); line-height: 1.7; }
+
+  .faq-section { background: var(--panel); }
+
+  .faq-list { max-width: 720px; margin: 40px auto 0; display: flex; flex-direction: column; gap: 0; }
+
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-item:first-child { border-top: 1px solid var(--border); }
+
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 24px 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--white);
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    transition: color 0.3s ease;
+  }
+  .faq-question:hover { color: var(--red-light); }
+
+  .faq-icon {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    color: var(--red-light);
+    flex-shrink: 0;
+    width: 24px; height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-red);
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    margin-top: 2px;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; }
+  .faq-item.open .faq-answer { max-height: 400px; padding-bottom: 24px; }
+  .faq-answer p { font-size: 0.98rem; color: var(--gray); line-height: 1.8; max-width: 640px; }
+
+  .final-cta { text-align: center; position: relative; padding: 120px 0 80px; }
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(196, 30, 42, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .final-cta .section-text { margin-left: auto; margin-right: auto; margin-bottom: 40px; }
+
+  .footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; }
+  .footer p { font-size: 0.8rem; color: var(--gray-dark); line-height: 1.6; }
+
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+    .hero-cta-wrap { align-items: center; }
+    .hero-cover { max-width: 300px; }
+    .pieces-grid { grid-template-columns: 1fr; gap: 16px; }
+    .author-grid { grid-template-columns: 1fr; text-align: center; gap: 32px; }
+    .author-avatar { margin: 0 auto; }
+    .author-bio { margin: 0 auto; }
+    section { padding: 72px 0; }
+  }
+
+  @media (max-width: 600px) {
+    section { padding: 56px 0; }
+    .container { padding: 0 20px; }
+    .offer-box { padding: 36px 24px; }
+    .piece-card { padding: 28px 22px; }
+    .authority-grid { grid-template-columns: 1fr; }
+    .hero { padding: 48px 0 60px; }
+    .final-cta { padding: 80px 0 60px; }
+    .cta-btn { padding: 16px 36px; font-size: 0.75rem; }
+    .author-avatar { width: 140px; height: 140px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero chess-texture">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <span class="hero-label reveal">Black Visor · Ebook Digital</span>
+        <h1 class="hero-title reveal reveal-delay-1">
+          De peão no tabuleiro<br>
+          a <span class="red">estrategista</span>
+        </h1>
+        <p class="hero-subtitle reveal reveal-delay-2">
+          Dominando a Arte da Influência Invisível — o manual que revela as engrenagens ocultas da persuasão, da negociação e do poder social.
+        </p>
+        <div class="hero-cta-wrap reveal reveal-delay-3">
+          <a href="https://pay.kiwify.com.br/f2Hjf5I" class="cta-btn" id="hero-cta">
+            Quero dominar o tabuleiro
+          </a>
+          <span class="hero-price-note">R$ 29,90 · Acesso imediato</span>
+        </div>
+      </div>
+      <div class="hero-cover-wrap reveal reveal-delay-2">
+        <img
+          src="images/capa-ebook.png"
+          alt="Capa do ebook A Engenharia da Persuasão — olho estilizado sobre fundo escuro com simbologia de xadrez"
+          class="hero-cover"
+          loading="eager"
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PAIN ===================== -->
+<section class="pain-section">
+  <div class="container">
+    <span class="section-label reveal">O Tabuleiro Que Você Não Escolheu</span>
+    <h2 class="section-title reveal reveal-delay-1">Você já sentiu que está sendo jogado?</h2>
+    <p class="section-text reveal reveal-delay-2">
+      Não no sentido abstrato. De forma literal. Alguém no seu ambiente — um chefe que desvia o mérito, um parceiro que usa culpa como alavanca, um colega que domina a sala sem ter razão — est[...]
+    </p>
+    <p class="section-text reveal reveal-delay-3">
+      Você aceita condições que não queria. Cede em negociações que deveria ter vencido. Engole humilhações disfarçadas de "piadas". E depois se pergunta por quê — como se fosse um defeito[...]
+    </p>
+    <ul class="pain-list reveal reveal-delay-4">
+      <li>Sente que perde o controle das situações e só percebe depois que foi manipulado</li>
+      <li>Convive com relações onde culpa, medo e obrigação ditam suas escolhas — a "Névoa FOG"</li>
+      <li>Não consegue projetar autoridade em reuniões; quem grita mais alto leva vantagem</li>
+      <li>Não "lê" as pessoas — mentiras, omissões e intenções ocultas passam despercebidas</li>
+      <li>Sabe que poderia negociar melhor — salário, imóvel, qualquer coisa — mas congela no momento</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== VIRADA ===================== -->
+<section class="virada-section">
+  <div class="container">
+    <span class="section-label reveal">A Virada</span>
+    <h2 class="section-title reveal reveal-delay-1">O momento em que você troca de lado do tabuleiro</h2>
+    <p class="section-text reveal reveal-delay-2">
+      A Engenharia da Persuasão não é um livro de autoajuda. Não vai te dizer que "você é incrível" nem que "basta acreditar em si mesmo". É um manual de procedimento — pragmático, denso, c[...]
+    </p>
+    <p class="section-text reveal reveal-delay-3">
+      O que muda não é a sua personalidade. Muda o seu repertório. Você passa a enxergar a matriz por trás das interações humanas — e a agir dentro dela com precisão cirúrgica.
+    </p>
+    <p class="virada-highlight reveal reveal-delay-4">
+      "Deixe de ser a peça que alguém move.<br>Torne-se o jogador que move as peças."
+    </p>
+    <div class="reveal reveal-delay-5">
+      <a href="https://pay.kiwify.com.br/f2Hjf5I" class="cta-btn">
+        Quero virar o jogo
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 6 DOMÍNIOS DE PODER ===================== -->
+<section class="pieces-section chess-texture">
+  <div class="container">
+    <span class="section-label reveal">Seis Domínios de Poder</span>
+    <h2 class="section-title reveal reveal-delay-1">Cada peça desbloqueia um tipo de domínio</h2>
+    <p class="section-text reveal reveal-delay-2">
+      Como no xadrez, o poder não é monolítico — é composto por movimentos distintos. O ebook está estruturado em seis domínios, cada um simbolizado por uma peça do tabuleiro.
+    </p>
+
+    <div class="pieces-grid">
+      <div class="piece-card reveal reveal-delay-1">
+        <span class="piece-icon">♟</span>
+        <span class="piece-name">O Peão</span>
+        <h3 class="piece-title">A Base — Defesa e Autoconhecimento</h3>
+        <p class="piece-desc">Antes de mover, é preciso não ser movido. Este domínio ensina a reconhecer quando você está sendo manipulado e a blindar suas decisões.</p>
+        <ul class="piece-skills">
+          <li>Identificar a "Névoa FOG" (culpa, medo, obrigação)</li>
+          <li>Reconhecer gaslighting e chantagem emocional</li>
+          <li>Mapear suas próprias vulnerabilidades cognitivas</li>
+        </ul>
+      </div>
+
+      <div class="piece-card reveal reveal-delay-2">
+        <span class="piece-icon">♞</span>
+        <span class="piece-name">O Cavalo</span>
+        <h3 class="piece-title">O Salto — Leitura Comportamental</h3>
+        <p class="piece-desc">O cavalo pula por cima das peças — e você vai enxergar por trás das máscaras. Linguagem corporal, microexpressões e sinais de estresse desvendados.</p>
+        <ul class="piece-skills">
+          <li>Ler "pacifiers" e sinais de desconforto (Joe Navarro)</li>
+          <li>Identificar microexpressões de emoção oculta (Paul Ekman)</li>
+          <li>Detectar mentiras por omissão e incongruências</li>
+        </ul>
+      </div>
+
+      <div class="piece-card reveal reveal-delay-3">
+        <span class="piece-icon">♝</span>
+        <span class="piece-name">O Bispo</span>
+        <h3 class="piece-title">A Diagonal — Empatia Estratégica</h3>
+        <p class="piece-desc">O bispo move em diagonal — e a empatia estratégica é o caminho mais curto para a mente do outro. Táticas de negociação de reféns aplicadas ao cotidiano.</p>
+        <ul class="piece-skills">
+          <li>Escuta tática e espelhamento calibrado (Chris Voss)</li>
+          <li>Etiquetagem de emoções para desarmar tensão</li>
+          <li>Fazer o outro sentir que a ideia foi dele</li>
+        </ul>
+      </div>
+
+      <div class="piece-card reveal reveal-delay-1">
+        <span class="piece-icon">♜</span>
+        <span class="piece-name">A Torre</span>
+        <h3 class="piece-title">A Fortaleza — Autoridade Silenciosa</h3>
+        <p class="piece-desc">A torre não se move em curvas — é reta, firme, inabalável. Projetar presença e respeito sem gritar, sem se justificar, sem ceder terreno.</p>
+        <ul class="piece-skills">
+          <li>Comunicação não-verbal de poder e presença</li>
+          <li>Ocupar espaço físico e simbólico em reuniões</li>
+          <li>Construir credibilidade antes de abrir a boca</li>
+        </ul>
+      </div>
+
+      <div class="piece-card reveal reveal-delay-2">
+        <span class="piece-icon">♛</span>
+        <span class="piece-name">A Rainha</span>
+        <h3 class="piece-title">A Versatilidade — Influência Invisível</h3>
+        <p class="piece-desc">A peça mais poderosa do tabuleiro. Estruturar palavras, ambientes e escolhas para que as pessoas cooperem naturalmente — sem perceber que foram influenciadas.</p>
+        <ul class="piece-skills">
+          <li>Arquitetura de escolhas e teoria do Nudge</li>
+          <li>Framing e ancoragem em negociações</li>
+          <li>Gerar confiança extrema em minutos</li>
+        </ul>
+      </div>
+
+      <div class="piece-card reveal reveal-delay-3">
+        <span class="piece-icon">♚</span>
+        <span class="piece-name">O Rei</span>
+        <h3 class="piece-title">O Comando — Estoicismo e Dinâmica de Poder</h3>
+        <p class="piece-desc">O rei é a peça que tudo protege. Construir um escudo interno inabalável e entender as dinâmicas de poder que governam qualquer grupo humano.</p>
+        <ul class="piece-skills">
+          <li>Técnica da "Pedra Cinzenta" contra predadores</li>
+          <li>Distanciamento emocional estoico sob pressão</li>
+          <li>Mapear e navegar hierarquias implícitas</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:48px;" class="reveal">
+      <a href="https://pay.kiwify.com.br/f2Hjf5I" class="cta-btn-outline">
+        Desbloquear os seis domínios
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== AUTHORITY ===================== -->
+<section>
+  <div class="container">
+    <span class="section-label reveal">Fundamentação</span>
+    <h2 class="section-title reveal reveal-delay-1">De onde vêm essas técnicas</h2>
+    <p class="section-text reveal reveal-delay-2">
+      Nada neste ebook foi inventado. Cada estratégia é sintetida de fontes verificáveis — negociação de vida ou morte, ciência comportamental e filosofia testada pelo tempo.
+    </p>
+
+    <div class="authority-grid">
+      <div class="authority-card reveal reveal-delay-1">
+        <span class="label">Negociação de Reféns</span>
+        <span class="name">Chris Voss</span>
+        <span class="desc">Ex-negociador do FBI. Táticas de escuta tática e empatia estratégica aplicadas em situações extremas.</span>
+      </div>
+      <div class="authority-card reveal reveal-delay-2">
+        <span class="label">Leitura Corporal</span>
+        <span class="name">Joe Navarro</span>
+        <span class="desc">Ex-agente de contraespionagem. Especialista em comportamento não-verbal e sinais de estresse.</span>
+      </div>
+      <div class="authority-card reveal reveal-delay-3">
+        <span class="label">Microexpressões</span>
+        <span class="name">Paul Ekman</span>
+        <span class="desc">Psicólogo pioneiro na decodificação de expressões faciais involuntárias em todas as culturas.</span>
+      </div>
+      <div class="authority-card reveal reveal-delay-4">
+        <span class="label">Teoria do Nudge</span>
+        <span class="name">Thaler & Sunstein</span>
+        <span class="desc">Prêmio Nobel de Economia. Como pequenas alterações no ambiente de escolha moldam decisões.</span>
+      </div>
+      <div class="authority-card reveal reveal-delay-5">
+        <span class="label">Filosofia Estoica</span>
+        <span class="name">Marcus Aurélio · Sêneca</span>
+        <span class="desc">Distanciamento emocional, foco no que é controlável e fortalecimento interno contra o externo.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== AUTHOR ===================== -->
+<section class="author-section">
+  <div class="container">
+    <div class="author-grid">
+      <div class="author-avatar reveal">
+        <img
+          src="images/avatar-black-visor.png"
+          alt="Black Visor"
+          loading="lazy"
+        >
+      </div>
+      <div>
+        <span class="section-label reveal reveal-delay-1">Sobre o Autor</span>
+        <h2 class="author-name reveal reveal-delay-2">Black Visor</h2>
+        <p class="author-bio reveal reveal-delay-3">
+          Pseudônimo. Não é um guru, não é coach, não aparece em palco com microfone de ouro. É alguém que passou anos estudando as engrenagens ocultas das interações humanas — da negocia…
+        </p>
+        <p class="author-bio reveal reveal-delay-4" style="margin-top: 16px;">
+          Black Visor enxerga o que a maioria não percebe: o tabuleiro por trás da conversa. Este ebook é o que ele gostaria de ter encontrado há uma década — quando ainda era peça, e não jog…
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== OFFER ===================== -->
+<section class="offer-section">
+  <div class="container">
+    <span class="section-label reveal">O Que Você Recebe</span>
+    <h2 class="section-title reveal reveal-delay-1">Tudo isso por menos de um almoço</h2>
+    <p class="section-text reveal reveal-delay-2">
+      Um manual que condensa anos de estudo em negociação, psicologia comportamental e filosofia estoica — pelo preço de uma refeição qualquer.
+    </p>
+
+    <div class="offer-box reveal reveal-delay-3">
+      <span class="offer-price-label">Investimento único</span>
+      <div class="offer-price">
+        <span class="currency">R$</span>29<span class="cents">,90</span>
+      </div>
+      <p class="offer-price-sub">Acesso imediato · Leitura em qualquer dispositivo</p>
+
+      <div class="offer-includes">
+        <span class="inc-label">Incluso neste valor</span>
+        <ul>
+          <li><strong>A Engenharia da Persuasão</strong> — ebook completo com os 6 domínios de poder + Desafio do Estrategista (plano de 30 dias)</li>
+          <li class="bonus">Glossário completo de termos psicológicos</li>
+          <li class="bonus">Checklist imprimível de Negociação de Alto Risco</li>
+          <li class="bonus">Modelos de frases prontas para situações específicas (dizer "não", sair de falsas escolhas, etc.)</li>
+          <li class="bonus">Guia de leitura recomendada em 6 níveis de aprofundamento</li>
+        </ul>
+      </div>
+
+      <a href="https://pay.kiwify.com.br/f2Hjf5I" class="cta-btn" style="width:100%; text-align:center;">
+        Quero acesso imediato
+      </a>
+
+      <div class="guarantee-box">
+        <span class="g-label">Garantia incondicional de 7 dias</span>
+        <p class="g-text">
+          Se por qualquer motivo você sentir que o ebook não é para você, basta solicitar o reembolso diretamente na plataforma Kiwify em até 7 dias e o valor total é devolvido automaticamente. [...]
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="faq-section">
+  <div class="container">
+    <span class="section-label reveal">Perguntas Frequentes</span>
+    <h2 class="section-title reveal reveal-delay-1" style="text-align:center;">Dúvidas antes de decidir</h2>
+
+    <div class="faq-list">
+      <div class="faq-item reveal reveal-delay-1">
+        <button class="faq-question" aria-expanded="false">
+          <span>É ético usar essas técnicas?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Sim — e o ebook deixa isso explícito. Persuasão é neutra: uma faca corta pão ou machuca alguém, depende de quem segura. O livro ensina tanto a influenciar eticamente (fazer alguém[...]
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-2">
+        <button class="faq-question" aria-expanded="false">
+          <span>Funciona para quem é tímido ou introvertido?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Especialmente. As técnicas de influência invisível não exigem que você seja extrovertido, carismático ou o centro das atenções. Muitas das estratégias mais poderosas do livro —[...]
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-3">
+        <button class="faq-question" aria-expanded="false">
+          <span>É só teoria ou tem prática?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Cada capítulo traz exemplos reais e aplicações concretas. Além disso, o ebook termina com o "Desafio do Estrategista" — um plano de 30 dias com missões sociais reais (uma por dia) [...]
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-4">
+        <button class="faq-question" aria-expanded="false">
+          <span>Em que formato recebo?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Em formato digital (PDF), compatível com celular, tablet, computador e Kindle. Após a confirmação do pagamento, você recebe o acesso imediatamente no seu e-mail — não precisa espe[...]
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-5">
+        <button class="faq-question" aria-expanded="false">
+          <span>Tem garantia? E se eu não gostar?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Sim. Você tem 7 dias de garantia incondicional gerenciada pela própria Kiwify — a plataforma de pagamento. Não precisa falar comigo, não precisa justificar. Basta acessar sua conta [...]
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-5">
+        <button class="faq-question" aria-expanded="false">
+          <span>Preciso de conhecimento prévio em psicologia?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Não. O ebook foi escrito para ser acessível sem formação prévia — cada conceito é explicado do zero, com exemplos do dia a dia. O glossário incluso cobre todos os termos técnico[...]
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FINAL CTA ===================== -->
+<section class="final-cta">
+  <div class="container">
+    <span class="section-label reveal">Decisão Final</span>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:700px; margin-left:auto; margin-right:auto;">
+      Daqui a 30 dias, você vai estar exatamente onde está — ou vai estar lendo o tabuleiro.
+    </h2>
+    <p class="section-text reveal reveal-delay-2" style="margin-bottom:40px;">
+      As interações não vão parar. As negociações vão continuar. As pessoas vão seguir tentando mover peças ao seu redor. A única diferença é se você vai continuar sem enxergar — ou se [...]
+    </p>
+    <div class="reveal reveal-delay-3" style="display:flex; flex-direction:column; align-items:center; gap:16px;">
+      <a href="https://pay.kiwify.com.br/f2Hjf5I" class="cta-btn">
+        Quero dominar o tabuleiro — R$ 29,90
+      </a>
+      <span style="font-size:0.8rem; color:var(--gray);">Garantia de 7 dias pela Kiwify · Acesso imediato · Pagamento seguro</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="container">
+    <p>© 2025 A Engenharia da Persuasão — Black Visor. Todos os direitos reservados.</p>
+    <p style="margin-top:8px;">Este produto não garante resultados financeiros. As técnicas descritas são ferramentas de comunicação e autoconhecimento.</p>
+  </div>
+</footer>
+
+<script>
+  var CHECKOUT_URL = 'https://pay.kiwify.com.br/f2Hjf5I';
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var links = document.querySelectorAll('a[href*="COLE AQUI"]');
+    for (var i = 0; i < links.length; i++) {
+      links[i].href = CHECKOUT_URL;
+    }
+  });
+
+  (function() {
+    var reveals = document.querySelectorAll('.reveal');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      for (var i = 0; i < reveals.length; i++) reveals[i].classList.add('visible');
+      return;
+    }
+    var observer = new IntersectionObserver(function(entries) {
+      for (var i = 0; i < entries.length; i++) {
+        if (entries[i].isIntersecting) {
+          entries[i].target.classList.add('visible');
+          observer.unobserve(entries[i].target);
+        }
+      }
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    for (var i = 0; i < reveals.length; i++) observer.observe(reveals[i]);
+  })();
+
+  (function() {
+    var items = document.querySelectorAll('.faq-item');
+    for (var i = 0; i < items.length; i++) {
+      (function(item) {
+        var btn = item.querySelector('.faq-question');
+        btn.addEventListener('click', function() {
+          var isOpen = item.classList.contains('open');
+          for (var j = 0; j < items.length; j++) {
+            items[j].classList.remove('open');
+            items[j].querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+          }
+          if (!isOpen) {
+            item.classList.add('open');
+            btn.setAttribute('aria-expanded', 'true');
+          }
+        });
+      })(items[i]);
+    }
+  })();
+</script>
+
+</body>
+</html>
